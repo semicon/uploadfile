@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ส่งงาน</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- CSS DataTable -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+  <script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+  <script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <!-- boxicons -->
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- sweetalert2 -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma/bulma.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- lightbox2 โชว์ภาพเมื่อ click -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+
+  <!-- Select 2 dropdown https://apalfrey.github.io/select2-bootstrap-5-theme/-->
+<!-- Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<!-- Or for RTL support -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <link href='index.css' rel='stylesheet'>
+
+</head>
+
+<body>
+  <div class="container my-3 d-none" id="databox">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+              type="button" role="tab" aria-controls="nav-profile" aria-selected="false">ส่งงาน</button>
+            <button class="nav-link" id="nav-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-detail" type="button"
+              role="tab" aria-controls="nav-detail" aria-selected="false"></button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active " id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+            tabindex="0">
+            <div class="card p-3 m-2 shadow rounded">
+              <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                  class="bi bi-ui-checks" viewBox="0 0 16 16">
+                  <path
+                    d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                </svg> แบบส่งงานมอบหมาย
+              </h3>
+              <h5 id="sch_n3" style="margin-bottom:10px;margin-top:5px;" class="mt-1 text-center  text-dark fw-bold">
+              </h5>
+              <form class="row g-2 needs-validation" novalidate id="user_form" onsubmit="getAllElmForm()">
+                <div class="input-box">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" list="idlist" id="idP" name="idP" placeholder="รหัสประจำตัว"
+                      autocomplete="off" required>
+                    <label for="floatingInput"><i class='bx bxs-devices'></i> รหัสประจำตัว</label>
+                    <datalist id="idlist"></datalist>
+                    <div class="invalid-feedback">
+                      โปรดระบุชื่อ-นามสกุล
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" list="namelist" id="nameP" name="nameP"
+                      placeholder="ชื่อ-นามสกุล" autocomplete="off" required >
+                    <label for="floatingInput"><i class='bx bxs-user-circle'></i> ชื่อ-นามสกุล</label>
+                    <datalist id="namelist"></datalist>
+                    <div class="invalid-feedback">
+                      โปรดระบุชื่อ-นามสกุล
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" list="emaillist" id="emailP" name="emailP"
+                      placeholder="E-mail" required>
+                    <label for="floatingInput"><i class='bx bx-envelope'></i> อีเมล</label>
+                    <datalist id="emaillist"></datalist>
+                    <div class="invalid-feedback">
+                      โปรดระบุอีเมล
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <!-- <div class="form-floating mb-3"> -->
+                    <select class="form-select form-select-md" id="courseP" name="courseP" style="width: 100%;"  data-placeholder="📖 เลือกรายวิชา" required>
+                    <option></option>
+                    </select>                
+                    <!-- <label for="floatingSelect"><i class='bx bxs-file bx-md' style="color:red"></i> รายวิชา</label> -->
+                    <div class="invalid-feedback">
+                      โปรดระบุรายวิชา
+                    </div>
+                  <!-- </div> -->
+                </div>
+                <div class="input-box">
+                  <div class="form-floating">
+                    <textarea class="form-control" id="detailP" name="detailP" placeholder="รายละเอียดแจ้งซ่อม"
+                      style="height: 100px" required></textarea>
+                    <label for="floatingTextarea"><i class='bx bxs-file'></i> รายละเอียดงาน</label>
+                    <div class="invalid-feedback">
+                      โปรดระบุรายละเอียดงาน
+                    </div>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <span><i class='bx bx-envelope'></i> อีเมลตอบกลับ</span>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioAccept" id="inlineRadio1" value="yes"
+                      checked>
+                    <label class="form-check-label" for="inlineRadio1">ต้องการ</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioAccept" id="inlineRadio2" value="no">
+                    <label class="form-check-label" for="inlineRadio2">ไม่ต้องการ</label>
+                  </div>
+                </div>
+                <div class="input-box">
+                  <div class="custom-file">
+                    <input type="file" class=" form-control custom-file-input w-100" id="file_image" name="file_image"
+                      onchange="fileValidation()" placeholder="ภาพแจ้งซ่อม">
+                    <label class="custom-file-label w-100" for="customFile">เลือกไฟล์ (สูงสุด 5 ไฟล์)</label>
+                  </div>
+                </div>
+                <div class="file-preview-container" id="filePreviews"></div>
+                <div class="input-box" id="imgbox">
+                  <div class="row mx-auto">
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"></p>
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input text-dark" type="checkbox" value="ยินยอม" name="agreement"
+                    id="agreement" required>
+                  <label class="form-check-label text-primary" for="flexCheckDefault">
+                    ข้าพเจ้าได้ตรวจสอบข้อมูลและยืนยันการส่งงานเรียบร้อยแล้ว </label>
+                  <div class="invalid-feedback">
+                    โปรดเลือกตรวจสอบและยืนยันการส่งงาน
+                  </div>
+                </div>
+                <!-- </div> -->
+                <button type="submit" id="btn_1" class="btn btn-lg w-100 rounded shadow"
+                  style="background-color: #608000;color: white;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2z" />
+                  </svg> บันทึกข้อมูล</button>
+                <button class="btn btn-outline-success btn-lg w-100" style="font-weight:bold;display: none;"
+                  type="submit" id="btn_2" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  กำลังบันทึกข้อมูล </button>
+              </form>
+            </div>
+            <!-- End Login -->
+          </div>
+          <div class="tab-pane fade" id="nav-detail" role="tabpanel" aria-labelledby="nav-detail-tab" tabindex="0">
+            <div class="table-responsive">
+              <table id="dataTableA" class="table table-bordered table-hover " style="width:100%">
+                <thead class="p-2 mb-2 bg-success text-white"></thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scriptIndex.js"></script>
+  <script src="scriptLoad.js"></script>
+  <script src="scriptSave.js"></script>
+  <script src="scripturlAPI.js"></script>
+  <!-- <script src="scriptDatatable.js"></script> -->
+</body>
+
+</html>
